@@ -16,7 +16,7 @@ public class IndexController {
     UserMapper userMapper;
 
     @RequestMapping(value = {"/", "/index.html", "index"})
-    public String index(HttpSession session) {
+    public String index() {
         System.out.println("-----index-----");
         return "index";
     }

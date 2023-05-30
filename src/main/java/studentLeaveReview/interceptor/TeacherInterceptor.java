@@ -15,7 +15,7 @@ public class TeacherInterceptor implements HandlerInterceptor {
         Object typeObject = session.getAttribute("type");
         short type = (typeObject != null) ? (short) typeObject : 0;
 
-        if (type != 2) {
+        if (type == 1 || type == 3) {
             response.sendRedirect("/StudentLeaveReviewSys_war_exploded/home");
         }
 

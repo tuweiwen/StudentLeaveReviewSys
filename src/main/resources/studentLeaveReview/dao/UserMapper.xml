@@ -6,4 +6,9 @@
         from users
         where username = #{username};
     </select>
+    <select id="selectUsers" resultType="studentLeaveReview.pojo.User">
+        select username, type
+        from users
+        limit #{offset}, #{size}
+    </select>
 </mapper>

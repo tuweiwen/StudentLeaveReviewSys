@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentLeaveReview.dao.LeaveRecordMapper">
+    <resultMap id="record" type="studentLeaveReview.pojo.LeaveRecord">
+        <id property="requestId" column="request_id" />
+        <result property="applyUser" column="apply_user" />
+        <result property="approveUser" column="approve_user" />
+        <result property="startTime" column="start_time" javaType="java.util.Date" />
+        <result property="endTime" column="end_time" javaType="java.util.Date" />
+        <result property="requestTime" column="request_time" javaType="java.util.Date" />
+    </resultMap>
+
+    <select id="selectRecord" resultMap="record">
+        select request_id, apply_user, approve_user, start_time, end_time, request_time from `leave` where request_id = #{request_id}
+    </select>
+    <select id="selectRecords" resultMap="record">
+        select request_id, apply_user, approve_user, start_time, end_time, request_time from `leave` limit #{offset}, #{size}
+    </select>
+
+
+</mapper>
