@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+       http://www.springframework.org/schema/context 
+       https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/"/>
+    </bean>
+
+    <mvc:annotation-driven/>
+    <mvc:interceptors>
+        <bean id="loginInterceptor" class="studentLeaveReview.interceptor.LoginInterceptor"/>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/admin/**"/>
+            <bean id="adminInterceptor" class="studentLeaveReview.interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/student/**"/>
+            <bean id="studentInterceptor" class="studentLeaveReview.interceptor.StudentInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/teacher/**"/>
+            <bean id="teacherInterceptor" class="studentLeaveReview.interceptor.TeacherInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <mvc:resources mapping="/error-pages/" location="/error-pages/**"/>
+    <context:component-scan base-package="studentLeaveReview.controller"/>
+</beans>
