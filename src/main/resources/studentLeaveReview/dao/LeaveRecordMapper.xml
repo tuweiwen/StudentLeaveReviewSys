@@ -2,19 +2,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="studentLeaveReview.dao.LeaveRecordMapper">
     <resultMap id="record" type="studentLeaveReview.pojo.LeaveRecord">
-        <id property="requestId" column="request_id" />
-        <result property="applyUser" column="apply_user" />
-        <result property="approveUser" column="approve_user" />
-        <result property="startTime" column="start_time" javaType="java.util.Date" />
-        <result property="endTime" column="end_time" javaType="java.util.Date" />
-        <result property="requestTime" column="request_time" javaType="java.util.Date" />
+        <id property="requestId" column="request_id"/>
+        <result property="applyUser" column="apply_user"/>
+        <result property="approveUser" column="approve_user"/>
+        <result property="startTime" column="start_time" javaType="java.util.Date"/>
+        <result property="endTime" column="end_time" javaType="java.util.Date"/>
+        <result property="requestTime" column="request_time" javaType="java.util.Date"/>
+        <result property="status" column="status"/>
     </resultMap>
+    <insert id="insertRecord">
+        insert into `leave`(apply_user, approve_user, start_time, end_time) value (#{apply}, #{approve}, #{start_time}, #{end_time});
+    </insert>
+    <update id="updateRecordStatusWithId">
+        update `leave`
+        set status = #{status}
+        where request_id = #{id};
+    </update>
+    <update id="updateRecordWithId">
+        update `leave`
+        set approve_user = #{approve_user},
+            start_time   = #{start_time},
+            end_time     = #{end_time},
+            status       = #{status}
+        where request_id = #{id}
+    </update>
+    <delete id="deleteRecord">
+        delete from `leave` where request_id = #{request_id}
+    </delete>
 
     <select id="selectRecord" resultMap="record">
-        select request_id, apply_user, approve_user, start_time, end_time, request_time from `leave` where request_id = #{request_id}
+        select request_id, apply_user, approve_user, start_time, end_time, request_time, status
+        from `leave`
+        where request_id = #{request_id}
     </select>
     <select id="selectRecords" resultMap="record">
-        select request_id, apply_user, approve_user, start_time, end_time, request_time from `leave` limit #{offset}, #{size}
+        select request_id, apply_user, approve_user, start_time, end_time, request_time, status
+        from `leave`
+        limit #{offset}, #{size}
+    </select>
+    <select id="selectRecordsWithApply" resultMap="record">
+        select request_id, approve_user, start_time, end_time, request_time, status
+        from `leave`
+        where apply_user = #{username}
+        limit #{offset}, #{size}
+    </select>
+    <select id="selectRecordsWithApprove" resultMap="record">
+        select request_id, apply_user, start_time, end_time, request_time, status
+        from `leave`
+        where approve_user = #{username}
+        limit #{offset}, #{size}
     </select>
 
 

@@ -16,10 +16,9 @@
 <%
     Object recordsObject = request.getAttribute("records");
     List<LeaveRecord> records = new ArrayList<>((Collection) recordsObject);
-    System.out.println(records);
 %>
 <body>
-<h1>leave records page</h1>
+<h1>leave records</h1>
 <table>
     <tr>
         <td>RequestId</td>
@@ -28,19 +27,28 @@
         <td>StartTime</td>
         <td>EndTime</td>
         <td>RequestTime</td>
+        <td>Status</td>
         <th colspan="2">command</th>
-<% for (LeaveRecord r : records) { %>
+            <% for (LeaveRecord r : records) { %>
     <tr>
-        <td><%=r.getRequestId()%></td>
-        <td><%=r.getApplyUser()%></td>
-        <td><%=r.getApproveUser()%></td>
-        <td><%=r.getStartTime()%></td>
-        <td><%=r.getEndTime()%></td>
-        <td><%=r.getRequestTime()%></td>
-        <td><p><a href="#">edit</a></p></td>
-        <td><p><a href="#">delete</a></p></td>
+        <td><%=r.getRequestId()%>
+        </td>
+        <td><%=r.getApplyUser()%>
+        </td>
+        <td><%=r.getApproveUser()%>
+        </td>
+        <td><%=r.getStartTime()%>
+        </td>
+        <td><%=r.getEndTime()%>
+        </td>
+        <td><%=r.getRequestTime()%>
+        </td>
+        <td><%=r.getStatus()%>
+        </td>
+        <td><p><a href="${pageContext.request.contextPath}/admin/editRecord?request_id=<%=r.getRequestId()%>">edit</a></p></td>
+        <td><p><a href="${pageContext.request.contextPath}/admin/deleteRecordServlet?request_id=<%=r.getRequestId()%>">delete</a></p></td>
     </tr>
-<% } %>
+    <% } %>
 </table>
 <br/>
 <p><a href="javascript:history.back(-1)">back</a></p>

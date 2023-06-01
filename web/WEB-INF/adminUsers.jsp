@@ -24,14 +24,16 @@
         <th>username</th>
         <th>type</th>
         <th colspan="2">command</th>
-<% for (User u : users) { %>
+            <% for (User u : users) { %>
     <tr>
-        <td><%=u.getUsername()%></td>
-        <td><%=u.getType()%></td>
-        <td><p><a href="#">edit</a></p></td>
-        <td><p><a href="#">delete</a></p></td>
+        <td><%=u.getUsername()%>
+        </td>
+        <td><%=u.getType()%>
+        </td>
+        <td><p><a href="${pageContext.request.contextPath}/admin/editUser?username=<%=u.getUsername()%>">edit</a></p></td>
+        <td><p><a href="${pageContext.request.contextPath}/admin/deleteUserServlet?username=<%=u.getUsername()%>">delete</a></p></td>
     </tr>
-<% } %>
+    <% } %>
 </table>
 <br/>
 <p><a href="javascript:history.back(-1)">back</a></p>

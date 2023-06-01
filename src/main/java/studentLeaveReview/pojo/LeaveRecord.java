@@ -1,7 +1,5 @@
 package studentLeaveReview.pojo;
 
-import org.apache.ibatis.type.Alias;
-
 import java.util.Date;
 
 public class LeaveRecord {
@@ -11,6 +9,7 @@ public class LeaveRecord {
     Date startTime;
     Date endTime;
     Date requestTime;
+    Short status;
 
     public Long getRequestId() {
         return requestId;
@@ -60,6 +59,14 @@ public class LeaveRecord {
         this.requestTime = requestTime;
     }
 
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "LeaveRecord{" +
@@ -69,6 +76,7 @@ public class LeaveRecord {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", requestTime=" + requestTime +
+                ", status=" + status +
                 '}';
     }
 }

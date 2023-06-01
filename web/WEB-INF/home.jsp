@@ -20,7 +20,8 @@
     short type = typeObject != null ? (short) typeObject : 0;
 %>
 <body>
-<h1>welcome back, <%=name%></h1>
+<h1>welcome back, <%=name%>
+</h1>
 
 <h2>what do you wanna do today?</h2>
 <!--for admin-->

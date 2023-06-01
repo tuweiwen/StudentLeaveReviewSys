@@ -29,8 +29,8 @@
     </p>
 </c:if>
 <form action="${pageContext.request.contextPath}/loginServlet" method="post">
-    <label for="username_input">username: </label><input id="username_input" type="text" name="username"><br/>
-    <label for="password_input">password: </label><input type="password" id="password_input" name="password"><br/>
+    <label for="username_input">username: </label><input required id="username_input" type="text" name="username"><br/>
+    <label for="password_input">password: </label><input required type="password" id="password_input" name="password"><br/>
     <input type="submit">
 </form>
 </body>
